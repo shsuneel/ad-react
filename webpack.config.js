@@ -2,19 +2,20 @@
 const path =require('path');
 
 module.exports = {
-    entry: './lib/components/index.js',
-    output: {
-        path: path.resolve(__dirname, 'public'),
-        filename: 'bundle.js'
-    },
-    module: {
-        rules: [
-            { 
-                test: /\.js$/, 
-                use:   {
-                    loader: 'babel-loader'
-                }
-            }
-        ]
-    }
+  entry: ['@babel/polyfill', './lib/components/index.js'],
+  output: {
+    path: path.resolve(__dirname, 'public'),
+    filename: 'bundle.js'
+  },
+  module: {
+    rules: [
+      { 
+        test: /\.js$/, 
+        exclude: /node_modules/,
+        use:   {
+          loader: 'babel-loader'
+        }
+      }
+    ]
+  }
 };
